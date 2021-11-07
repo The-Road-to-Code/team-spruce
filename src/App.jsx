@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Chat from "./components/Chat";
+import Board from "./components/Board";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AppContextProvider, useAppContext } from "./context/appContext";
 
@@ -33,6 +34,7 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Header username={username} setUsername={setUsername} />
+                <Board />
                 <Chat username={username} />
                 <Footer username={username} />
               </Route>
