@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Input,
   Stack,
@@ -6,13 +6,13 @@ import {
   useToast,
   Box,
   Container,
-} from "@chakra-ui/react";
-import { BiSend } from "react-icons/bi";
-import { useAppContext } from "../context/appContext";
+} from '@chakra-ui/react';
+import { BiSend } from 'react-icons/bi';
+import { useAppContext } from '../context/appContext';
 
 export default function MessageForm() {
   const { supabase, username, country, auth } = useAppContext();
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const toast = useToast();
   const [isSending, setIsSending] = useState(false);
 
@@ -21,10 +21,10 @@ export default function MessageForm() {
     setIsSending(true);
     if (!message) return;
 
-    setMessage("");
+    setMessage('');
 
     try {
-      const { error } = await supabase.from("messages").insert([
+      const { error } = await supabase.from('messages').insert([
         {
           text: message,
           username,
@@ -36,17 +36,17 @@ export default function MessageForm() {
       if (error) {
         console.error(error.message);
         toast({
-          title: "Error sending",
+          title: 'Error sending',
           description: error.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
           isClosable: true,
         });
         return;
       }
-      console.log("Sucsessfully sent!");
+      console.log('Sucsessfully sent!');
     } catch (error) {
-      console.log("error sending message:", error);
+      console.log('error sending message:', error);
     } finally {
       setIsSending(false);
     }
